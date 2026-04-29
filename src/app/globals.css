@@ -2,25 +2,78 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #17171c;
+  
+  --cohere-black: #000000;
+  --deep-green: #00311f; 
+  --dark-navy: #071829;
+  --soft-stone: #eeece7;
+  --ink: #212121;
+  --muted: #93939f;
+  --hairline: #d9d9dd;
+  --action-blue: #1863dc;
+  --coral: #ff7759;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-primary: var(--foreground);
+  --color-brand-black: var(--cohere-black);
+  --color-brand-green: var(--deep-green);
+  --color-brand-navy: var(--dark-navy);
+  --color-brand-stone: var(--soft-stone);
+  --color-brand-ink: var(--ink);
+  --color-brand-action: var(--action-blue);
+  --color-brand-coral: var(--coral);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 32px;
+
+  --font-display: "Inter", "Space Grotesk", ui-sans-serif, system-ui;
+  --font-body: "Inter", "Arial", ui-sans-serif, system-ui;
+  --font-mono: "ui-monospace", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
+    --soft-stone: #17171c;
+    --ink: #f2f2f2;
+    --hairline: #333333;
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Display Utilities */
+@utility text-hero {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 15vw, 10rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+@utility text-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@utility outline-text {
+  -webkit-text-stroke: 1px var(--hairline);
+  color: transparent;
 }
