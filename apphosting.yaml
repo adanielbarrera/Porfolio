@@ -1,0 +1,8 @@
+kind: "AppStack"
+apiVersion: "v1"
+env:
+  - variable: RESEND_API_KEY
+    availability: ["BUILD", "RUNTIME"]
+  - variable: CONTACT_EMAIL
+    value: "angelodanielo24@gmail.com"
+    availability: ["BUILD", "RUNTIME"]

@@ -258,7 +258,7 @@ export default function Home() {
             </p>
 
             <div className="space-y-6">
-              <a href="mailto:tu-email@ejemplo.com" className="flex items-center gap-4 group">
+              <a href="mailto:adanielb.dev@gmail.com" className="flex items-center gap-4 group">
                 <div className="w-12 h-12 rounded-full border border-brand-hairline dark:border-white/10 flex items-center justify-center group-hover:bg-brand-green group-hover:border-brand-green transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:text-white transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                 </div>
@@ -283,62 +283,41 @@ export default function Home() {
           <div className="bg-brand-stone dark:bg-brand-black p-8 md:p-12 rounded-2xl border border-brand-hairline dark:border-white/10">
             <h3 className="text-2xl font-bold mb-8">Envíame un mensaje</h3>
 
-            {messageState?.success ? (
-              <div className="bg-brand-green/10 border border-brand-green text-brand-green p-6 rounded-xl animate-in zoom-in-95 duration-300">
-                <p className="font-bold mb-2">¡Mensaje enviado!</p>
-                <p className="text-sm">{messageState.success}</p>
-                <button
-                  onClick={() => setMessageState(null)}
-                  className="mt-4 text-xs font-bold uppercase tracking-widest hover:underline"
-                >
-                  Enviar otro mensaje
-                </button>
-              </div>
-            ) : (
-              <form
-                className="space-y-6"
-                action={async (formData) => {
-                  setIsPending(true);
-                  setMessageState(null);
-                  const result = await sendEmail(formData);
-                  setIsPending(false);
-                  setMessageState(result);
-                }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-xs font-mono uppercase text-brand-muted">Nombre</label>
-                    <input name="name" required type="text" className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-mono uppercase text-brand-muted">Email</label>
-                    <input name="email" required type="email" className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors" placeholder="john@example.com" />
-                  </div>
+            <form 
+              className="space-y-6" 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const name = formData.get("name");
+                const email = formData.get("email");
+                const message = formData.get("message");
+                const mailtoUrl = `mailto:adanielb.dev@gmail.com?subject=Mensaje de ${name} (${email})&body=${encodeURIComponent(message as string)}`;
+                window.location.href = mailtoUrl;
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase text-brand-muted">Nombre</label>
+                  <input name="name" required type="text" className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-mono uppercase text-brand-muted">Mensaje</label>
-                  <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors resize-none" placeholder="¿Cómo puedo ayudarte?"></textarea>
+                  <label className="text-xs font-mono uppercase text-brand-muted">Email</label>
+                  <input name="email" required type="email" className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors" placeholder="john@example.com" />
                 </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase text-brand-muted">Mensaje</label>
+                <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors resize-none" placeholder="¿Cómo puedo ayudarte?"></textarea>
+              </div>
 
-                {messageState?.error && (
-                  <p className="text-red-500 text-xs font-mono">{messageState.error}</p>
-                )}
-
-                <button
-                  disabled={isPending}
-                  className="w-full bg-brand-green text-white py-4 rounded-pill font-bold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                >
-                  {isPending ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Enviando...
-                    </>
-                  ) : "Enviar Mensaje"}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+              <button 
+                type="submit"
+                className="w-full bg-brand-green text-white py-4 rounded-pill font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-3"
+              >
+                Continuar en mi Correo
+              </button>
+            </form>
+          </div>        </div>
       </section>
 
       <Footer />
