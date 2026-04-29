@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     company: "Freelance",
     role: "Junior Web Developer",
     period: "Presente",
-    description: "Agregar descripción de experiencia como freelance. Mencionar que es trabajo independiente y que se tienen clientes variados. Por el momento no hay clientes. ",
+    description: "Desarrollo de soluciones web personalizadas. Diseño y arquitectura de sistemas centrados en la simplicidad técnica y la optimización de activos para mejorar la confianza del usuario final.",
     technologies: ["Next.js", "TypeScript", "Node.js"]
   },
   {
