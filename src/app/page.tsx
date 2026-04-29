@@ -167,7 +167,7 @@ export default function Home() {
                 </div>
               )}
               <Image
-                src="/about-me.jpeg"
+                src="/about-me.png"
                 alt="Sobre mí"
                 fill
                 className={`object-cover transition-opacity duration-1000 ${aboutImageLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -283,8 +283,8 @@ export default function Home() {
           <div className="bg-brand-stone dark:bg-brand-black p-8 md:p-12 rounded-2xl border border-brand-hairline dark:border-white/10">
             <h3 className="text-2xl font-bold mb-8">Envíame un mensaje</h3>
 
-            <form 
-              className="space-y-6" 
+            <form
+              className="space-y-6"
               onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
@@ -310,7 +310,7 @@ export default function Home() {
                 <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-brand-hairline dark:border-white/20 py-2 focus:border-brand-green outline-none transition-colors resize-none" placeholder="¿Cómo puedo ayudarte?"></textarea>
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="w-full bg-brand-green text-white py-4 rounded-pill font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-3"
               >
